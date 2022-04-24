@@ -79,3 +79,19 @@ func AtualizaAluno(c *gin.Context) {
 
 	c.JSON(http.StatusOK, aluno)
 }
+
+func BuscaAlunoPorCPF(c *gin.Context) {
+	cpf := c.Params.ByName("cpf")
+	var aluno models.Aluno
+
+	database.DB.Where(&models.Aluno{CPF: cpf}).First(&aluno)
+
+	if aluno.ID == 0 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"Not found": "Aluno not found",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, aluno)
+}
