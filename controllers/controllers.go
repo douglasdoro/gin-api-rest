@@ -6,13 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func ExibeTodosAlunos1(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"id":   "1",
-		"nome": "Douglas",
-	})
-}
-
 func ExibeTodosAlunos(c *gin.Context) {
 	c.JSON(200, models.Alunos)
 }
