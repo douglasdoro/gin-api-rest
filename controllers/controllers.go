@@ -9,6 +9,7 @@ import (
 )
 
 func ExibeTodosAlunos(c *gin.Context) {
+	database.DB.Find(&models.Alunos)
 	c.JSON(200, models.Alunos)
 }
 
