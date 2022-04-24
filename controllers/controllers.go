@@ -50,3 +50,14 @@ func CriaNovoAluno(c *gin.Context) {
 	database.DB.Create(&aluno)
 	c.JSON(http.StatusCreated, aluno)
 }
+
+func DeletaAluno(c *gin.Context) {
+	var aluno models.Aluno
+	id := c.Params.ByName("id")
+
+	database.DB.Delete(&aluno, id)
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Aluno deleted",
+	})
+}
