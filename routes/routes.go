@@ -15,6 +15,9 @@ func HandleRequest() {
 	r.GET("/list", controllers.ExibeListHtml)
 	r.Static("/assets", "./assets")
 
+	// Not Found
+	r.NoRoute(controllers.RotaNaoEncontrada)
+
 	// API
 	r.GET("/alunos", controllers.ExibeTodosAlunos)
 	r.GET(":nome", controllers.Saudacao)

@@ -124,3 +124,7 @@ func ExibeListHtml(c *gin.Context) {
 
 	c.HTML(200, "list.html", gin.H{"alunos": alunos})
 }
+
+func RotaNaoEncontrada(c *gin.Context) {
+	c.HTML(http.StatusNotFound, "404.html", nil)
+}
