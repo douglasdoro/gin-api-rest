@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"gi-api-rest/controllers"
 	"gi-api-rest/database"
@@ -116,4 +117,32 @@ func TestDeletaAlunoHandler(t *testing.T) {
 	assert.Equal(t, http.StatusOK, resp.Code)
 	respostaBody, _ := ioutil.ReadAll(resp.Body)
 	assert.Equal(t, `{"message":"Aluno deleted"}`, string(respostaBody))
+}
+
+func TestEditaUmAlunoHandler(t *testing.T) {
+	database.ConectaComBancoDeDados()
+	CriaAlunoMock()
+	defer DeletaAlunoMock()
+	r := setupDasRotasDeTeste()
+	r.PATCH("/alunos/:id", controllers.AtualizaAluno)
+	editAlunoPath := "/alunos/" + strconv.Itoa(int(alunoMockId))
+	newValuesAluno := models.Aluno{
+		Nome: "Nome do aluno editado",
+		CPF:  "40345678901",
+		RG:   "403456789",
+	}
+
+	newValuesAlunoJSON, _ := json.Marshal(newValuesAluno)
+
+	req, _ := http.NewRequest("PATCH", editAlunoPath, bytes.NewBuffer(newValuesAlunoJSON))
+	resp := httptest.NewRecorder()
+	r.ServeHTTP(resp, req)
+
+	var editedAluno models.Aluno
+	json.Unmarshal(resp.Body.Bytes(), &editedAluno)
+
+	assert.Equal(t, newValuesAluno.Nome, editedAluno.Nome)
+	assert.Equal(t, newValuesAluno.CPF, editedAluno.CPF)
+	assert.Equal(t, newValuesAluno.RG, editedAluno.RG)
+	assert.Equal(t, http.StatusOK, resp.Code)
 }
