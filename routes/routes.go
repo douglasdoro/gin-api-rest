@@ -2,9 +2,9 @@ package routes
 
 import (
 	"gi-api-rest/controllers"
-	"gi-api-rest/docs"
 
-	docs "./docs"
+	// docs "github.com/douglasdoro/gin-api-rest/docs"
+	docs "github.com/douglasdoro/gin-api-rest/docs"
 
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
