@@ -109,3 +109,9 @@ func BuscaAlunoPorCPF(c *gin.Context) {
 
 	c.JSON(http.StatusOK, aluno)
 }
+
+func ExibeIndexHtml(c *gin.Context) {
+	c.HTML(200, "index.html", gin.H{
+		"mensagem": "Hello",
+	})
+}
