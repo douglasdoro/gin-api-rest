@@ -110,8 +110,17 @@ func BuscaAlunoPorCPF(c *gin.Context) {
 	c.JSON(http.StatusOK, aluno)
 }
 
+// html responses
+
 func ExibeIndexHtml(c *gin.Context) {
 	c.HTML(200, "index.html", gin.H{
 		"mensagem": "Hello",
 	})
+}
+
+func ExibeListHtml(c *gin.Context) {
+	var alunos []models.Aluno
+	database.DB.Find(&alunos)
+
+	c.HTML(200, "list.html", gin.H{"alunos": alunos})
 }

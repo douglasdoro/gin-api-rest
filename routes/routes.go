@@ -12,6 +12,7 @@ func HandleRequest() {
 	// HTML pages
 	r.LoadHTMLGlob("templates/*")
 	r.GET("/index", controllers.ExibeIndexHtml)
+	r.GET("/list", controllers.ExibeListHtml)
 
 	// API
 	r.GET("/alunos", controllers.ExibeTodosAlunos)
