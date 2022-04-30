@@ -1,10 +1,9 @@
 package routes
 
 import (
-	"gi-api-rest/controllers"
+	"github.com/douglasdoro/gin-api-rest/controllers"
 
-	// docs "github.com/douglasdoro/gin-api-rest/docs"
-	docs "github.com/douglasdoro/gin-api-rest/docs"
+	//docs "github.com/douglasdoro/gin-api-rest/docs"
 
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -15,7 +14,7 @@ func HandleRequest() {
 	r := gin.Default()
 
 	// Swagger
-	docs.SwaggerInfo.BasePath = "/"
+	//docs.SwaggerInfo.BasePath = "/"
 
 	// HTML pages
 	r.LoadHTMLGlob("templates/*")

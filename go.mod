@@ -1,4 +1,4 @@
-module gi-api-rest
+module github.com/douglasdoro/gin-api-rest
 
 go 1.18
 

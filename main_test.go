@@ -3,14 +3,15 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"gi-api-rest/controllers"
-	"gi-api-rest/database"
-	"gi-api-rest/models"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"strconv"
 	"testing"
+
+	"github.com/douglasdoro/gin-api-rest/controllers"
+	"github.com/douglasdoro/gin-api-rest/database"
+	"github.com/douglasdoro/gin-api-rest/models"
 
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"

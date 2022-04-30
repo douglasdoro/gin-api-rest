@@ -1,9 +1,10 @@
 package controllers
 
 import (
-	"gi-api-rest/database"
-	"gi-api-rest/models"
 	"net/http"
+
+	"github.com/douglasdoro/gin-api-rest/database"
+	"github.com/douglasdoro/gin-api-rest/models"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/swaggo/swag/example/celler/httputil"

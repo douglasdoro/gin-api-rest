@@ -1,8 +1,9 @@
 package database
 
 import (
-	"gi-api-rest/models"
 	"log"
+
+	"github.com/douglasdoro/gin-api-rest/models"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

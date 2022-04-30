@@ -1,8 +1,8 @@
 package main
 
 import (
-	"gi-api-rest/database"
-	"gi-api-rest/routes"
+	"github.com/douglasdoro/gin-api-rest/database"
+	"github.com/douglasdoro/gin-api-rest/routes"
 )
 
 func main() {
