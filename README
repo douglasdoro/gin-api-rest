@@ -29,6 +29,8 @@ go mod why
 
 
 ### Generate DOCS
+- I is importante to export \$GOPATH in terminal before running Swagger 
+ ``$ export PATH=$(go env GOPATH)/bin:$PATH* ``
 ```bash
   swag init --parseDependency --parseInternal --parseDepth 1
 ```

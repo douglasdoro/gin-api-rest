@@ -2,12 +2,20 @@ package routes
 
 import (
 	"gi-api-rest/controllers"
+	"gi-api-rest/docs"
+
+	docs "./docs"
 
 	"github.com/gin-gonic/gin"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	swaggerFiles "github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 func HandleRequest() {
 	r := gin.Default()
+
+	// Swagger
+	docs.SwaggerInfo.BasePath = "/"
 
 	// HTML pages
 	r.LoadHTMLGlob("templates/*")
@@ -26,6 +34,9 @@ func HandleRequest() {
 	r.POST("/alunos", controllers.CriaNovoAluno)
 	r.PATCH("/alunos/:id", controllers.AtualizaAluno)
 	r.GET("/alunos/cpf/:cpf", controllers.BuscaAlunoPorCPF)
+
+	// Swagger
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	r.Run()
 }
