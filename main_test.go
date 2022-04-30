@@ -16,6 +16,9 @@ import (
 var alunoMockId int64
 
 func setupDasRotasDeTeste() *gin.Engine {
+	// Just for better visualization of tests
+	gin.SetMode(gin.ReleaseMode)
+
 	rotas := gin.Default()
 	return rotas
 }
@@ -31,7 +34,7 @@ func CriaAlunoMock() {
 	alunoMockId = int64(aluno.ID)
 }
 
-func DeletaAluno() {
+func DeletaAlunoMock() {
 	var aluno models.Aluno
 	database.DB.Delete(&aluno, alunoMockId)
 }
@@ -58,7 +61,7 @@ func TestListandoTodosOsAlunosHandler(t *testing.T) {
 	database.ConectaComBancoDeDados()
 
 	CriaAlunoMock()
-	defer DeletaAluno()
+	defer DeletaAlunoMock()
 
 	r := setupDasRotasDeTeste()
 	r.GET("/alunos", controllers.ExibeTodosAlunos)
@@ -67,4 +70,15 @@ func TestListandoTodosOsAlunosHandler(t *testing.T) {
 	r.ServeHTTP(resposta, req)
 
 	assert.Equal(t, http.StatusOK, resposta.Code)
+}
+
+func TestBuscaAlunoPorCPFHandler(t *testing.T) {
+	database.ConectaComBancoDeDados()
+	defer DeletaAlunoMock()
+	r := setupDasRotasDeTeste()
+	r.GET("/alunos/cpf/:cpf", controllers.BuscaAlunoPorCPF)
+	req, _ := http.NewRequest("GET", "/alunos/cpf/12345678901", nil)
+	resp := httptest.NewRecorder()
+	r.ServeHTTP(resp, req)
+	assert.Equal(t, http.StatusOK, resp.Code)
 }
